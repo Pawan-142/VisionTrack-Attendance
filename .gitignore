@@ -1,0 +1,56 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.env/
+env/
+.env
+
+# Large Binaries / Executables / Models
+cloudflared.exe
+*.exe
+*.dat
+*.bz2
+
+# Firebase & Secret Keys (CRITICAL)
+serviceAccountKey.json
+*.pem
+*.key
+*.token
+
+# Local Database & Backups
+database/*.db
+database/*.pkl
+database/backups/
+*.db
+*.pkl
+
+# Exports & Generated Files
+exports/
+*.csv
+*.xlsx
+*.pdf
+
+# Local Face Photos
+faces/
+*.jpg
+*.jpeg
+*.png
+
+# Node / Frontend dependencies & builds
+next_frontend/node_modules/
+next_frontend/dist/
+node_modules/
+dist/
+
+# IDE / Logs / System
+.gemini/
+.vscode/
+.idea/
+.streamlit/
+*.log
+Thumbs.db
+.DS_Store

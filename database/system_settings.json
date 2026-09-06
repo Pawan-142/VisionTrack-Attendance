@@ -1,0 +1,30 @@
+{
+  "model_name": "ArcFace",
+  "threshold": 0.53,
+  "frame_skip": 4,
+  "cooldown_sec": 5,
+  "num_captures": 10,
+  "anti_spoofing": true,
+  "liveness_strictness": "high",
+  "camera_mode": "client",
+  "attendance_threshold": 75,
+  "college_name": "VisionTrack University College of Engg",
+  "departments": [
+    "CSE",
+    "ECE",
+    "MBA",
+    "EEE",
+    "MECH",
+    "CIVIL"
+  ],
+  "years": [
+    "1st Year",
+    "2nd Year",
+    "3rd Year",
+    "4th Year",
+    "PG 1st Year",
+    "PG 2nd Year"
+  ],
+  "sound_enabled": true,
+  "email_alerts_enabled": true
+}
