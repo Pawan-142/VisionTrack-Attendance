@@ -6,19 +6,19 @@
   "rewrites": [
     {
       "source": "/api/:match*",
-      "destination": "https://visiontrack-attendance.onrender.com/api/:match*"
+      "destination": "https://netscape-resulted-newspapers-dear.trycloudflare.com/api/:match*"
     },
     {
       "source": "/faces/:match*",
-      "destination": "https://visiontrack-attendance.onrender.com/faces/:match*"
+      "destination": "https://netscape-resulted-newspapers-dear.trycloudflare.com/faces/:match*"
     },
     {
       "source": "/video_feed",
-      "destination": "https://visiontrack-attendance.onrender.com/video_feed"
+      "destination": "https://netscape-resulted-newspapers-dear.trycloudflare.com/video_feed"
     },
     {
       "source": "/enrollment_feed",
-      "destination": "https://visiontrack-attendance.onrender.com/enrollment_feed"
+      "destination": "https://netscape-resulted-newspapers-dear.trycloudflare.com/enrollment_feed"
     },
     {
       "source": "/(.*)",
