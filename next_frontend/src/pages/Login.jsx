@@ -4,6 +4,9 @@ import {
   Lock, User, ArrowRight, Shield, ScanFace, Clock, UserCheck
 } from 'lucide-react';
 import { useAuth } from '../AuthContext';
+import cyberFaceScan from '../assets/cyber_face_scan.png';
+import logoLight from '../assets/visiontrack_logo_light.png';
+import logoDark from '../assets/visiontrack_logo_dark.png';
 
 const ROLES = [
   { 
@@ -29,9 +32,9 @@ const ROLES = [
 export default function Login({ theme, setTheme }) {
   const { login } = useAuth();
   const [form, setForm] = useState({ username: '', password: '' });
-  const [showPwd, setShowPwd] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [selectedRole, setSelectedRole] = useState('admin');
 
   const handleLogin = async (e) => {
@@ -62,24 +65,17 @@ export default function Login({ theme, setTheme }) {
     }
   };
 
-  const selectRole = (roleId) => {
-    setSelectedRole(roleId);
+  const fillDemo = (role) => {
+    if (role === 'admin') setForm({ username: 'admin', password: 'password123' });
+    else if (role === 'teacher') setForm({ username: 'faculty1', password: 'password123' });
+    else if (role === 'student') setForm({ username: '2024CS01', password: 'password123' });
     setError('');
-    if (roleId === 'admin') {
-      setForm({ username: 'admin', password: 'admin123' });
-    } else {
-      setForm({ username: '', password: '' });
-    }
   };
 
-  const useDemoAccount = () => {
-    if (selectedRole === 'admin') {
-      setForm({ username: 'admin', password: 'admin123' });
-    } else if (selectedRole === 'teacher') {
-      setForm({ username: 'teacher9', password: 'teacher9' });
-    } else {
-      setForm({ username: '100525742404', password: '100525742404' });
-    }
+  const handleRoleSelect = (roleId) => {
+    setSelectedRole(roleId);
+    setForm({ username: '', password: '' });
+    setError('');
   };
 
   const currentRole = ROLES.find(r => r.id === selectedRole) || ROLES[0];
@@ -90,7 +86,7 @@ export default function Login({ theme, setTheme }) {
       <header className="vt-topbar">
         <div className="vt-brand">
           <img 
-            src={theme === 'light' ? '/assets/visiontrack_logo_light.png' : '/assets/visiontrack_logo_dark.png'} 
+            src={theme === 'light' ? logoLight : logoDark} 
             alt="VisionTrack" 
             className="vt-brand-full-logo"
             style={{ height: '34px', maxWidth: '170px', objectFit: 'contain' }}
@@ -145,7 +141,7 @@ export default function Login({ theme, setTheme }) {
                 <span className="corner bottom-right" />
                 
                 <img 
-                  src="/assets/cyber_face_scan.png" 
+                  src={cyberFaceScan} 
                   alt="AI Biometric Face Scan" 
                   className="vt-face-mesh-image"
                 />

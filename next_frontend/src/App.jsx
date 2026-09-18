@@ -22,6 +22,8 @@ import ManualAttendance from './pages/ManualAttendance';
 import ReportCard from './pages/ReportCard';
 import ClassSchedule from './pages/ClassSchedule';
 import NoticeBoard from './pages/NoticeBoard';
+import logoLight from './assets/visiontrack_logo_light.png';
+import logoDark from './assets/visiontrack_logo_dark.png';
 
 const NAV = [
   { id: 'dashboard',        label: 'Dashboard',       icon: LayoutDashboard, roles: ['admin','teacher','student'] },
@@ -140,7 +142,7 @@ function App() {
           <div className="sidebar-logo flex-between">
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <img 
-                src={theme === 'light' ? '/assets/visiontrack_logo_light.png' : '/assets/visiontrack_logo_dark.png'} 
+                src={theme === 'light' ? logoLight : logoDark} 
                 alt="VisionTrack" 
                 style={{ height: '34px', maxWidth: '185px', objectFit: 'contain' }}
               />
