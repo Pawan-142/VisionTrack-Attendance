@@ -5,6 +5,22 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/api/:match*",
+      "destination": "https://visiontrack-attendance.onrender.com/api/:match*"
+    },
+    {
+      "source": "/faces/:match*",
+      "destination": "https://visiontrack-attendance.onrender.com/faces/:match*"
+    },
+    {
+      "source": "/video_feed",
+      "destination": "https://visiontrack-attendance.onrender.com/video_feed"
+    },
+    {
+      "source": "/enrollment_feed",
+      "destination": "https://visiontrack-attendance.onrender.com/enrollment_feed"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
