@@ -42,8 +42,9 @@ export default function Login({ theme, setTheme }) {
       return; 
     }
     setLoading(true);
+    const apiBase = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${apiBase}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: form.username.trim(), password: form.password }),

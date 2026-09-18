@@ -38,14 +38,17 @@ export function AuthProvider({ children }) {
     } catch { logout(); }
   }, [token, logout]);
 
+  const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+
   // Intercept 401s globally via custom fetch wrapper
   const authFetch = useCallback(async (url, options = {}) => {
+    const fullUrl = url.startsWith('http') ? url : `${API_BASE}${url}`;
     const headers = {
       'Content-Type': 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(options.headers || {}),
     };
-    const res = await fetch(url, { ...options, headers });
+    const res = await fetch(fullUrl, { ...options, headers });
     if (res.status === 401) { logout(); throw new Error('Session expired'); }
     return res;
   }, [token, logout]);
