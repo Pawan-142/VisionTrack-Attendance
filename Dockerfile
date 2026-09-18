@@ -23,10 +23,11 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy source files
 COPY . .
 
-# Expose default port
-EXPOSE 8000
-ENV PORT=8000
+# Set default Render / Cloud Container port
+ENV PORT=10000
+EXPOSE 10000
 ENV PYTHONUNBUFFERED=1
+ENV TF_CPP_MIN_LOG_LEVEL=3
 
-# Run FastAPI backend with uvicorn
-CMD ["sh", "-c", "uvicorn fastapi_app:app --host 0.0.0.0 --port ${PORT}"]
+# Run FastAPI backend with uvicorn binding to dynamic PORT
+CMD ["sh", "-c", "uvicorn fastapi_app:app --host 0.0.0.0 --port ${PORT:-10000}"]

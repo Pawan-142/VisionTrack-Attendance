@@ -93,6 +93,11 @@ async def add_no_cache_headers(request: Request, call_next):
         response.headers["Expires"] = "0"
     return response
 
+@app.get("/health")
+@app.get("/api/health")
+def health_check():
+    return {"status": "ok", "service": "VisionTrack API", "timestamp": datetime.now().isoformat()}
+
 # Adapter so enroll.py can stream frames to the React browser
 class FrameQueue:
     """Acts like a Streamlit stframe but puts JPEG bytes into a queue."""

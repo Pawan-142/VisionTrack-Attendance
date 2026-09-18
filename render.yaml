@@ -1,10 +1,12 @@
 services:
   - type: web
-    name: visiontrack-api
+    name: visiontrack-attendance
     runtime: docker
     plan: free
     region: oregon
     dockerfilePath: ./Dockerfile
     envVars:
       - key: PORT
-        value: 8000
+        value: 10000
+      - key: TF_CPP_MIN_LOG_LEVEL
+        value: 3
