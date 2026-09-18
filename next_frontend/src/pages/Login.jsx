@@ -31,8 +31,8 @@ const ROLES = [
 
 export default function Login({ theme, setTheme }) {
   const { login } = useAuth();
-  const [form, setForm] = useState({ username: '', password: '' });
-  const [showPassword, setShowPassword] = useState(false);
+  const [form, setForm] = useState({ username: 'admin', password: 'admin123' });
+  const [showPwd, setShowPwd] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedRole, setSelectedRole] = useState('admin');
@@ -68,16 +68,19 @@ export default function Login({ theme, setTheme }) {
   };
 
   const fillDemo = (role) => {
-    if (role === 'admin') setForm({ username: 'admin', password: 'password123' });
-    else if (role === 'teacher') setForm({ username: 'faculty1', password: 'password123' });
-    else if (role === 'student') setForm({ username: '2024CS01', password: 'password123' });
+    if (role === 'admin') setForm({ username: 'admin', password: 'admin123' });
+    else if (role === 'teacher') setForm({ username: 'faculty1', password: 'faculty123' });
+    else if (role === 'student') setForm({ username: '2024CS01', password: 'student123' });
     setError('');
+  };
+
+  const useDemoAccount = () => {
+    fillDemo(selectedRole);
   };
 
   const handleRoleSelect = (roleId) => {
     setSelectedRole(roleId);
-    setForm({ username: '', password: '' });
-    setError('');
+    fillDemo(roleId);
   };
 
   const currentRole = ROLES.find(r => r.id === selectedRole) || ROLES[0];
