@@ -36,9 +36,12 @@ exports/
 
 # Local Face Photos
 faces/
-*.jpg
-*.jpeg
-*.png
+faces/*.jpg
+faces/*.jpeg
+faces/*.png
+!next_frontend/src/assets/*
+!next_frontend/public/assets/*
+!static/assets/*
 
 # Node / Frontend dependencies & builds
 next_frontend/node_modules/
