@@ -36,10 +36,18 @@ def _get_arcface_model():
 
 
 def warmup_arcface():
-    """Pre-load ArcFace weights into memory."""
+    """Pre-load ArcFace weights lazily without crashing low-memory environments."""
     def _do_warm():
-        _get_arcface_model()
-        print("[VisionTrack] Fast direct ArcFace engine warmed up and ready.")
+        try:
+            import os
+            # If constrained container memory, let model load on demand
+            if os.environ.get("RENDER") or os.environ.get("PORT"):
+                print("[VisionTrack] Cloud container detected — ArcFace will load on-demand.")
+                return
+            _get_arcface_model()
+            print("[VisionTrack] Fast direct ArcFace engine warmed up and ready.")
+        except Exception as e:
+            print(f"[VisionTrack] ArcFace background warmup deferred: {e}")
     t = threading.Thread(target=_do_warm, daemon=True)
     t.start()
 
