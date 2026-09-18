@@ -36,6 +36,8 @@ export default function Login({ theme, setTheme }) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedRole, setSelectedRole] = useState('admin');
+  const [faceImgError, setFaceImgError] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   const handleLogin = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
@@ -85,12 +87,22 @@ export default function Login({ theme, setTheme }) {
       {/* Top Navbar */}
       <header className="vt-topbar">
         <div className="vt-brand">
-          <img 
-            src={theme === 'light' ? logoLight : logoDark} 
-            alt="VisionTrack" 
-            className="vt-brand-full-logo"
-            style={{ height: '34px', maxWidth: '170px', objectFit: 'contain' }}
-          />
+          {!logoError ? (
+            <img 
+              src={theme === 'light' ? logoLight : logoDark} 
+              alt="VisionTrack" 
+              className="vt-brand-full-logo"
+              style={{ height: '34px', maxWidth: '170px', objectFit: 'contain' }}
+              onError={() => setLogoError(true)}
+            />
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
+              <div style={{ width: 28, height: 28, borderRadius: 8, background: 'linear-gradient(135deg, #0284c7, #38bdf8)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <ScanFace size={18} color="#fff" />
+              </div>
+              <span>Vision<span style={{ color: '#38bdf8' }}>Track</span></span>
+            </div>
+          )}
           <span className="vt-brand-pill">AI ATTENDANCE</span>
         </div>
 
@@ -140,11 +152,52 @@ export default function Login({ theme, setTheme }) {
                 <span className="corner bottom-left" />
                 <span className="corner bottom-right" />
                 
-                <img 
-                  src={cyberFaceScan} 
-                  alt="AI Biometric Face Scan" 
-                  className="vt-face-mesh-image"
-                />
+                {!faceImgError ? (
+                  <img 
+                    src={cyberFaceScan} 
+                    alt="AI Biometric Face Scan" 
+                    className="vt-face-mesh-image"
+                    onError={() => setFaceImgError(true)}
+                  />
+                ) : (
+                  <div style={{
+                    width: 215,
+                    height: 215,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0.6) 70%)',
+                    borderRadius: 16,
+                    border: '1px solid rgba(56, 189, 248, 0.3)',
+                    boxShadow: '0 0 30px rgba(56, 189, 248, 0.25)',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}>
+                    <div style={{
+                      position: 'absolute',
+                      top: 0, left: 0, right: 0, bottom: 0,
+                      backgroundImage: 'linear-gradient(rgba(56, 189, 248, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(56, 189, 248, 0.1) 1px, transparent 1px)',
+                      backgroundSize: '16px 16px',
+                    }} />
+                    <ScanFace size={80} color="#38bdf8" style={{ filter: 'drop-shadow(0 0 16px rgba(56, 189, 248, 0.8))', zIndex: 2 }} />
+                    <div style={{
+                      marginTop: 12,
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color: '#38bdf8',
+                      zIndex: 2,
+                      background: 'rgba(15, 23, 42, 0.8)',
+                      padding: '3px 10px',
+                      borderRadius: 20,
+                      border: '1px solid rgba(56, 189, 248, 0.4)'
+                    }}>
+                      ArcFace 512D Active
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
