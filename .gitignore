@@ -22,11 +22,7 @@ serviceAccountKey.json
 *.token
 
 # Local Database & Backups
-database/*.db
-database/*.pkl
 database/backups/
-*.db
-*.pkl
 
 # Exports & Generated Files
 exports/
@@ -34,11 +30,9 @@ exports/
 *.xlsx
 *.pdf
 
-# Local Face Photos
-faces/
-faces/*.jpg
-faces/*.jpeg
-faces/*.png
+# Local Face Photos & Assets
+!faces/
+!faces/**
 !next_frontend/src/assets/*
 !next_frontend/public/assets/*
 !static/assets/*
