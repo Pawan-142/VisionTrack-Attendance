@@ -78,10 +78,12 @@ export default function Login({ theme, setTheme }) {
     fillDemo(selectedRole);
   };
 
-  const handleRoleSelect = (roleId) => {
+  const selectRole = (roleId) => {
     setSelectedRole(roleId);
     fillDemo(roleId);
   };
+
+  const handleRoleSelect = selectRole;
 
   const currentRole = ROLES.find(r => r.id === selectedRole) || ROLES[0];
 
